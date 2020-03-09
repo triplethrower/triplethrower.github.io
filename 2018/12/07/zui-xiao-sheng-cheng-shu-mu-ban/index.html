@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>最小生成树模板 | therspist&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这是一篇讲kruskal的题解看题解很多大佬只讲kruskal思路，我就来写写整个代码的思路 思路：核心思想不是堆，不是查找，而是sort">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最小生成树模板">
+<meta property="og:url" content="http://triplethrower.github.io/2018/12/07/zui-xiao-sheng-cheng-shu-mu-ban/index.html">
+<meta property="og:site_name" content="therspist&#39;s blog">
+<meta property="og:description" content="这是一篇讲kruskal的题解看题解很多大佬只讲kruskal思路，我就来写写整个代码的思路 思路：核心思想不是堆，不是查找，而是sort">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-07T11:42:51.000Z">
+<meta property="article:modified_time" content="2020-02-24T02:35:14.426Z">
+<meta property="article:author" content="Fractures">
+<meta property="article:tag" content="模板">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="therspist&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">therspist&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">さくら</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://triplethrower.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-zui-xiao-sheng-cheng-shu-mu-ban" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/07/zui-xiao-sheng-cheng-shu-mu-ban/" class="article-date">
+  <time datetime="2018-12-07T11:42:51.000Z" itemprop="datePublished">2018-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      最小生成树模板
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="这是一篇讲kruskal的题解"><a href="#这是一篇讲kruskal的题解" class="headerlink" title="这是一篇讲kruskal的题解"></a>这是一篇讲kruskal的题解</h2><p>看题解很多大佬只讲kruskal思路，我就来写写整个代码的思路</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>核心思想不是堆，不是查找，而是sort</p>
+<a id="more"></a>
+<p>我们可以这么想：因为是最小的路径，所以我们可以排序一下，把节点根据长度从小到达大排序一下</p>
+<p>所以，我们先开个结构体来储存节点和边长（开结构体是为了方便sort排序）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> p1,p2,val;<span class="comment">//p1是出发点，p2是目的地，val是路的长度</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>因为是根据节点排序，所以我们可以开个cmp函数<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(node &amp;A,node &amp;B)</span></span>&#123;<span class="comment">//不写取地址符也可以</span></span><br><span class="line">	<span class="keyword">return</span> A.val&lt;B.val;<span class="comment">//保持路径小的在前面</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么问题来了：怎么不走重复的点呢？</p>
+<p>这需要我们的并查集。这里我不多讲并查集了，不会的大佬可以参考<a href="https://www.luogu.org/blog/My-luoguBuoke-HZR/solution-p3367" target="_blank" rel="noopener">这个</a></p>
+<p>那么我们就可以写一个find函数，用来合并两个已经走过的点<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(f[k]==k)<span class="keyword">return</span> k;</span><br><span class="line">	<span class="keyword">return</span> f[k]=find(f[k]);<span class="comment">//路径压缩</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后再sort排序，整个代码就成型了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">5001</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(f[k]==k)<span class="keyword">return</span> k;</span><br><span class="line">	<span class="keyword">return</span> f[k]=find(f[k]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> p1,p2,val;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(node &amp;A,node &amp;B)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> A.val&lt;B.val;</span><br><span class="line">&#125;</span><br><span class="line">node qwq[<span class="number">200001</span>];</span><br><span class="line"><span class="keyword">int</span> ans,cnt;<span class="comment">//cnt是用来判断能不能联通</span></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;qwq[i].p1,&amp;qwq[i].p2,&amp;qwq[i].val);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">5000</span>;i++)f[i]=i;<span class="comment">//初始化</span></span><br><span class="line">	sort(qwq+<span class="number">1</span>,qwq+m+<span class="number">1</span>,cmp);<span class="comment">//sort排序</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(find(qwq[i].p1)!=find(qwq[i].p2))&#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			f[find(qwq[i].p1)]=find(qwq[i].p2);<span class="comment">//合并</span></span><br><span class="line">			ans+=qwq[i].val;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(cnt==n<span class="number">-1</span>)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"orz\n"</span>);<span class="comment">//不能联通就输出orz,但是好像测试点中没有不联通的数据</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://triplethrower.github.io/2018/12/07/zui-xiao-sheng-cheng-shu-mu-ban/" data-id="ck7jrmuca0005s8rgb0834ypx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A8%A1%E6%9D%BF/" rel="tag">模板</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/02/26/qian-tan-shu-zhuang-shu-zu-he-xian-duan-shu/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          浅谈线段树和树状数组
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/05/luogu-p4995-tiao-tiao-tijie/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">洛谷P4995【跳跳】</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%9D%BF/" rel="tag">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B4%9B%E8%B0%B7/" rel="tag">洛谷</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%93%E5%BA%9F/" rel="tag">颓废</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 20px;">教程</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 10px;">模板</a> <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="font-size: 10px;">洛谷</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 10px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/02/26/hexo-bo-ke-xin-ban-next-zhu-ti-da-jian/">hexo博客新版next主题搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/25/APEX-ru-keng-zhi-dao/">APEX入坑指导</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/15/yi-ming-oier-de-liu-lan-qi-shi-yong-fang-shi/">一名oier的浏览器使用方式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/13/deepin-linux-an-zhuang-bi-ji/">deepin linux安装笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/26/ju-zhen-na-xie-shi/">矩阵那些事</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Fractures<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

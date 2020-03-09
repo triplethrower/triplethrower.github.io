@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>矩阵那些事 | therspist&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="其实矩阵是一个非常有意思的东西呢矩阵在各个领域都能用到，而且非常方便呢那么，矩阵长什么样呢大体长这个样：$\begin{bmatrix}a_{1,1}&amp;a_{1,2}&amp;a_{1,3}&amp;\cdots\\a_{2,1}&amp;a_{2,2}&amp;a_{2,3}&amp;\cdots\\a_{3,1}&amp;a_{3,2}&amp;a_{3,3}&amp;\cdots\\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="矩阵那些事">
+<meta property="og:url" content="http://triplethrower.github.io/2019/02/26/ju-zhen-na-xie-shi/index.html">
+<meta property="og:site_name" content="therspist&#39;s blog">
+<meta property="og:description" content="其实矩阵是一个非常有意思的东西呢矩阵在各个领域都能用到，而且非常方便呢那么，矩阵长什么样呢大体长这个样：$\begin{bmatrix}a_{1,1}&amp;a_{1,2}&amp;a_{1,3}&amp;\cdots\\a_{2,1}&amp;a_{2,2}&amp;a_{2,3}&amp;\cdots\\a_{3,1}&amp;a_{3,2}&amp;a_{3,3}&amp;\cdots\\">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-02-26T11:42:51.000Z">
+<meta property="article:modified_time" content="2020-02-24T02:34:20.477Z">
+<meta property="article:author" content="Fractures">
+<meta property="article:tag" content="数论">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="therspist&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">therspist&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">さくら</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://triplethrower.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ju-zhen-na-xie-shi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/26/ju-zhen-na-xie-shi/" class="article-date">
+  <time datetime="2019-02-26T11:42:51.000Z" itemprop="datePublished">2019-02-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      矩阵那些事
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="其实矩阵是一个非常有意思的东西呢"><a href="#其实矩阵是一个非常有意思的东西呢" class="headerlink" title="其实矩阵是一个非常有意思的东西呢"></a>其实矩阵是一个非常有意思的东西呢</h1><h2 id="矩阵在各个领域都能用到，而且非常方便呢"><a href="#矩阵在各个领域都能用到，而且非常方便呢" class="headerlink" title="矩阵在各个领域都能用到，而且非常方便呢"></a>矩阵在各个领域都能用到，而且非常方便呢</h2><h3 id="那么，矩阵长什么样呢"><a href="#那么，矩阵长什么样呢" class="headerlink" title="那么，矩阵长什么样呢"></a>那么，矩阵长什么样呢</h3><h4 id="大体长这个样："><a href="#大体长这个样：" class="headerlink" title="大体长这个样："></a>大体长这个样：</h4><p>$\begin{bmatrix}a_{1,1}&amp;a_{1,2}&amp;a_{1,3}&amp;\cdots\\a_{2,1}&amp;a_{2,2}&amp;a_{2,3}&amp;\cdots\\a_{3,1}&amp;a_{3,2}&amp;a_{3,3}&amp;\cdots\\\vdots&amp;\vdots&amp;\vdots\end{bmatrix}$ </p>
+<a id="more"></a>
+<h5 id="当然，矩阵并不一定必须要是方阵"><a href="#当然，矩阵并不一定必须要是方阵" class="headerlink" title="当然，矩阵并不一定必须要是方阵"></a>当然，矩阵并不一定必须要是方阵</h5><h4 id="那么，矩阵怎么运算？"><a href="#那么，矩阵怎么运算？" class="headerlink" title="那么，矩阵怎么运算？"></a>那么，矩阵怎么运算？</h4><p>其实矩阵的运算也挺简单的：</p>
+<p>比如说：</p>
+<p>$\begin{bmatrix}10&amp;7\\6&amp;4\end{bmatrix}$ $+$ $\begin{bmatrix}6&amp;1\\8&amp;-3\end{bmatrix}$ $=$ $\begin{bmatrix}16&amp;8\\14&amp;1\end{bmatrix}$</p>
+<p>挺好看出来的吧？其实就是每个位置相对应的数相加就行了</p>
+<p>减法也跟加法一样</p>
+<p>矩阵乘法是跟加减不一样的，而乘法才是矩阵运算的核心</p>
+<p>我们同样来看上一个栗子：</p>
+<p>$\begin{bmatrix}10&amp;7\\6&amp;4\end{bmatrix}$ $\times$ $\begin{bmatrix}6&amp;1\\8&amp;-3\end{bmatrix}$ $=$<br>$\begin{bmatrix}116&amp;-11\\68&amp;-6\end{bmatrix}$</p>
+<p>是不是跟上面的加减法很不一样呢</p>
+<p>我们来仔细看一下这个式子：<br>$\begin{bmatrix}10&amp;7\\6&amp;4\end{bmatrix}$ $\times$ $\begin{bmatrix}6&amp;1\\8&amp;-3\end{bmatrix}$ $=$<br>$\begin{bmatrix}10\times6+7\times8&amp;10\times1+7\times-3\\6\times6+4\times8&amp;6\times1+4\times-3\end{bmatrix}$ $=$<br>$\begin{bmatrix}116&amp;-11\\68&amp;-6\end{bmatrix}$</p>
+<p>如果我们设矩阵$A,B,C$且$A\times B=C$,<br>我们能看出来，矩阵乘法的原理是$A$的横行$\times$$B$的纵行的总和</p>
+<h4 id="注：在实际应用中只会应用到矩阵的方阵，所以我们下面提到的矩阵都是方阵"><a href="#注：在实际应用中只会应用到矩阵的方阵，所以我们下面提到的矩阵都是方阵" class="headerlink" title="注：在实际应用中只会应用到矩阵的方阵，所以我们下面提到的矩阵都是方阵"></a>注：在实际应用中只会应用到矩阵的方阵，所以我们下面提到的矩阵都是方阵</h4><p>代码实现也很简单（方阵）：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=n;k++)&#123;</span><br><span class="line">                c.m[i][j]=c.m[i][j]+a.m[i][k]*b.m[k][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><br>我们也可以用数组存矩阵，但是那样用有局限性，这个在后面会提到</p>
+<p>矩阵有几个特性，它支持结合律，所以它的乘法运算跟别的乘法运算差不多</p>
+<p>说到这里，矩阵到底有什么用呢？</p>
+<p>我们来看一下斐波那契数列：<br>$f(n)=f(n-1)+f(n-2)$</p>
+<p>这个式子很简单，只要递推一下就可以了</p>
+<p><strong>但是！</strong> 如果我们要求第2000000000项，那么不用说，我们肯定会被卡得怀疑人生</p>
+<p>这时候，矩阵就派上用场了</p>
+<p>首先，$f_i=f_{i-1}+f_{i-2}=f_{i-1}\times1+f_{i-2}\times1$</p>
+<p>而$f_{i-1}=f_{i-1}\times1+f_{i-2}\times1$</p>
+<p>$\therefore\begin{bmatrix}f_{i}&amp;0\\f_{i-1}&amp;0\end{bmatrix}=\begin{bmatrix}1&amp;1\\1&amp;0\end{bmatrix}\times\begin{bmatrix}f_{i-1}&amp;0\\f_{i-2}&amp;0\end{bmatrix}$</p>
+<p>而$\begin{bmatrix}f_{i-1}&amp;0\\f_{i-2}&amp;0\end{bmatrix}=\begin{bmatrix}1&amp;1\\1&amp;0\end{bmatrix}\times\begin{bmatrix}f_{i-2}&amp;0\\f_{i-3}&amp;0\end{bmatrix}$</p>
+<p>即$\begin{bmatrix}f_{i}&amp;0\\f_{i-1}&amp;0\end{bmatrix}=\begin{bmatrix}1&amp;1\\1&amp;0\end{bmatrix}^2\times\begin{bmatrix}f_{i-2}&amp;0\\f_{i-3}&amp;0\end{bmatrix}$</p>
+<p>最终，我们能推出$\begin{bmatrix}f_{i}&amp;0\\f_{i-1}&amp;0\end{bmatrix}=\begin{bmatrix}1&amp;1\\1&amp;0\end{bmatrix}^{i-2}\times\begin{bmatrix}f_{2}&amp;0\\f_{1}&amp;0\end{bmatrix}=\begin{bmatrix}1&amp;1\\1&amp;0\end{bmatrix}^{i-2}\times\begin{bmatrix}1&amp;0\\1&amp;0\end{bmatrix}$</p>
+<p>这样的话能比普通的递推式快很多很多很多，因为我们求矩阵快速幂是很快的</p>
+<h3 id="那么，矩阵快速幂怎么求？"><a href="#那么，矩阵快速幂怎么求？" class="headerlink" title="那么，矩阵快速幂怎么求？"></a>那么，矩阵快速幂怎么求？</h3><p>上面我说过，矩阵满足结合律，所以矩阵快速幂跟普通快速幂几乎一模一样，只是把乘法改成矩阵乘法而已</p>
+<p>代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000007</span></span><br><span class="line">ll n,p;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Mat</span>&#123;</span></span><br><span class="line">    ll m[<span class="number">101</span>][<span class="number">101</span>];<span class="comment">//存储矩阵的结构体数组</span></span><br><span class="line">&#125;;</span><br><span class="line">Mat a,e;</span><br><span class="line"><span class="function">Mat <span class="title">Mul</span><span class="params">(Mat x,Mat y)</span></span>&#123;<span class="comment">//矩阵乘法</span></span><br><span class="line">    Mat c;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;<span class="comment">//对于结构体我们不能使用memset</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            c.m[i][j]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=n;k++)&#123;</span><br><span class="line">                c.m[i][j]=c.m[i][j]%mod+x.m[i][k]*y.m[k][j]%mod;<span class="comment">//核心代码</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Mat <span class="title">MatPow</span><span class="params">(Mat x,ll y)</span></span>&#123;<span class="comment">//矩阵快速幂，可以发现除了乘法被换成Mat以外基本跟快速幂没有什么区别</span></span><br><span class="line">    Mat ans=e;</span><br><span class="line">    <span class="keyword">while</span>(y)&#123;</span><br><span class="line">        <span class="keyword">if</span>(y&amp;<span class="number">1</span>)&#123;</span><br><span class="line">            ans=Mul(ans,x);</span><br><span class="line">        &#125;</span><br><span class="line">        x=Mul(x,x);</span><br><span class="line">        y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;n,&amp;p);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;a.m[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;<span class="comment">//单位矩阵，这个相当于1，对角线都是1，其他的是0，其他矩阵乘以这个矩阵本身的值不变</span></span><br><span class="line">        e.m[i][i]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Mat ans=MatPow(a,p);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%lld "</span>,ans.m[i][j]%mod);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>从中我们就可以看到开结构体的优越性，而且我们开数组存矩阵的话根本就没办法进行运算</p>
+<p>那么，我们的斐波那契数列就可以写出来了：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000007</span></span><br><span class="line"><span class="keyword">int</span> t;</span><br><span class="line">ll n;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Mat</span>&#123;</span></span><br><span class="line">    ll m[<span class="number">4</span>][<span class="number">4</span>];</span><br><span class="line">&#125;;</span><br><span class="line">Mat a,e;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> Mat <span class="title">Mul</span><span class="params">(Mat x,Mat y)</span></span>&#123;</span><br><span class="line">    Mat c;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">3</span>;j++)&#123;</span><br><span class="line">            c.m[i][j]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">3</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=<span class="number">3</span>;k++)&#123;</span><br><span class="line">                c.m[i][j]=c.m[i][j]%mod+x.m[i][k]*y.m[k][j]%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Mat <span class="title">Matpow</span><span class="params">(Mat x,ll y)</span></span>&#123;</span><br><span class="line">    Mat ans=e;</span><br><span class="line">    <span class="keyword">while</span>(y)&#123;</span><br><span class="line">        <span class="keyword">if</span>(y&amp;<span class="number">1</span>)&#123;</span><br><span class="line">            ans=Mul(ans,x);</span><br><span class="line">        &#125;</span><br><span class="line">        x=Mul(x,x);</span><br><span class="line">        y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line">Mat aans;</span><br><span class="line">Mat d;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    e.m[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    e.m[<span class="number">2</span>][<span class="number">2</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//e.m[3][3]=1;</span></span><br><span class="line">    a.m[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    a.m[<span class="number">2</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//a.m[3][1]=1;</span></span><br><span class="line">    d.m[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    d.m[<span class="number">2</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//d.m[3][2]=1;</span></span><br><span class="line">    d.m[<span class="number">1</span>][<span class="number">2</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//scanf("%d",&amp;t);</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"1\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    aans=Mul(Matpow(d,n<span class="number">-2</span>),a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,aans.m[<span class="number">1</span>][<span class="number">1</span>]%mod);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>也就是<a href="https://www.luogu.org/problem/P1962" target="_blank" rel="noopener">这道题</a></p>
+<p>那么，如果只这样呢？</p>
+<p>$f(1)=f(2)=f(3)=1$<br>$f(n)=f(n-1)+f(n-3)$</p>
+<p>我们可以这么推：<br>首先，$f_i=f_{i-1}+f_{i-3}=f_{i-1}\times1+f_{i-2}\times0+f_{i-3}\times1$<br>$f_{i-1}=f_{i-1}\times1+f_{i-2}\times0+f_{i-3}\times1$<br>$f_{i-2}=f_{i-1}\times0+f_{i-2}\times1+f_{i-3}\times0$</p>
+<p>$\therefore\begin{bmatrix}f_{i}&amp;0&amp;0\\f_{i-1}&amp;0&amp;0\\f_{i-2}&amp;0&amp;0\end{bmatrix}=\begin{bmatrix}1&amp;0&amp;1\\1&amp;0&amp;0\\0&amp;1&amp;0\end{bmatrix}\times\begin{bmatrix}f_{i-1}&amp;0&amp;0\\f_{i-2}&amp;0&amp;0\\f_{i-3}&amp;0&amp;0\end{bmatrix}$</p>
+<p>而$\begin{bmatrix}f_{i-1}&amp;0&amp;0\\f_{i-2}&amp;0&amp;0\\f_{i-3}&amp;0&amp;0\end{bmatrix}=\begin{bmatrix}1&amp;0&amp;1\\1&amp;0&amp;0\\0&amp;1&amp;0\end{bmatrix}\times\begin{bmatrix}f_{i-2}&amp;0&amp;0\\f_{i-3}&amp;0&amp;0\\f_{i-4}&amp;0&amp;0\end{bmatrix}$</p>
+<p>即$\begin{bmatrix}f_{i}&amp;0&amp;0\\f_{i-1}&amp;0&amp;0\\f_{i-2}&amp;0&amp;0\end{bmatrix}=\begin{bmatrix}1&amp;0&amp;1\\1&amp;0&amp;0\\0&amp;1&amp;0\end{bmatrix}^2\times\begin{bmatrix}f_{i-2}&amp;0&amp;0\\f_{i-3}&amp;0&amp;0\\f_{i-4}&amp;0&amp;0\end{bmatrix}$</p>
+<p>最终，我们能推出$\begin{bmatrix}f_{i}&amp;0&amp;0\\f_{i-1}&amp;0&amp;0\\f_{i-2}&amp;0&amp;0\end{bmatrix}=\begin{bmatrix}1&amp;0&amp;1\\1&amp;0&amp;0\\0&amp;1&amp;0\end{bmatrix}^{i-3}\times\begin{bmatrix}f_{3}&amp;0&amp;0\\f_{2}&amp;0&amp;0\\f_{1}&amp;0&amp;0\end{bmatrix}=\begin{bmatrix}1&amp;0&amp;1\\1&amp;0&amp;0\\0&amp;1&amp;0\end{bmatrix}^{i-3}\times\begin{bmatrix}1&amp;0&amp;0\\1&amp;0&amp;0\\1&amp;0&amp;0\end{bmatrix}$</p>
+<p>所以这样我们就可以得出结果了</p>
+<p>代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000007</span></span><br><span class="line"><span class="keyword">int</span> t;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Mat</span>&#123;</span></span><br><span class="line">    ll m[<span class="number">4</span>][<span class="number">4</span>];</span><br><span class="line">&#125;;</span><br><span class="line">Mat a,e;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> Mat <span class="title">Mul</span><span class="params">(Mat x,Mat y)</span></span>&#123;</span><br><span class="line">    Mat c;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">3</span>;j++)&#123;</span><br><span class="line">            c.m[i][j]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">3</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=<span class="number">3</span>;k++)&#123;</span><br><span class="line">                c.m[i][j]=c.m[i][j]%mod+x.m[i][k]*y.m[k][j]%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Mat <span class="title">Matpow</span><span class="params">(Mat x,ll y)</span></span>&#123;</span><br><span class="line">    Mat ans=e;</span><br><span class="line">    <span class="keyword">while</span>(y)&#123;</span><br><span class="line">        <span class="keyword">if</span>(y&amp;<span class="number">1</span>)&#123;</span><br><span class="line">            ans=Mul(ans,x);</span><br><span class="line">        &#125;</span><br><span class="line">        x=Mul(x,x);</span><br><span class="line">        y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line">Mat aans;</span><br><span class="line">Mat d;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    e.m[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    e.m[<span class="number">2</span>][<span class="number">2</span>]=<span class="number">1</span>;</span><br><span class="line">    e.m[<span class="number">3</span>][<span class="number">3</span>]=<span class="number">1</span>;</span><br><span class="line">    a.m[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    a.m[<span class="number">2</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    a.m[<span class="number">3</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    d.m[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    d.m[<span class="number">2</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    d.m[<span class="number">3</span>][<span class="number">2</span>]=<span class="number">1</span>;</span><br><span class="line">    d.m[<span class="number">1</span>][<span class="number">3</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">3</span>)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"1\n"</span>);</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        aans=Mul(Matpow(d,n<span class="number">-3</span>),a);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,aans.m[<span class="number">1</span>][<span class="number">1</span>]%mod);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>也就是<a href="https://www.luogu.org/problem/P1939" target="_blank" rel="noopener">这道题</a></p>
+<p>终于讲完啦！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://triplethrower.github.io/2019/02/26/ju-zhen-na-xie-shi/" data-id="ck7jrmudc000ls8rg3fy43qz2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/13/deepin-linux-an-zhuang-bi-ji/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          deepin linux安装笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/26/qian-tan-shu-zhuang-shu-zu-he-xian-duan-shu/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">浅谈线段树和树状数组</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E6%9D%BF/" rel="tag">模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B4%9B%E8%B0%B7/" rel="tag">洛谷</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%93%E5%BA%9F/" rel="tag">颓废</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 20px;">教程</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E8%AE%BA/" style="font-size: 10px;">数论</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 10px;">模板</a> <a href="/tags/%E6%B4%9B%E8%B0%B7/" style="font-size: 10px;">洛谷</a> <a href="/tags/%E9%A2%93%E5%BA%9F/" style="font-size: 10px;">颓废</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">题解</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/02/26/hexo-bo-ke-xin-ban-next-zhu-ti-da-jian/">hexo博客新版next主题搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/25/APEX-ru-keng-zhi-dao/">APEX入坑指导</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/15/yi-ming-oier-de-liu-lan-qi-shi-yong-fang-shi/">一名oier的浏览器使用方式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/13/deepin-linux-an-zhuang-bi-ji/">deepin linux安装笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/26/ju-zhen-na-xie-shi/">矩阵那些事</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Fractures<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
